@@ -1,0 +1,368 @@
+﻿@{
+
+    Layout = null;
+    ViewData["Title"] = "Login - ThePleasantOcc";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - ThePleasantOcc</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-blue: #1e3a8a;
+            --secondary-blue: #2563eb;
+            --light-blue: #3b82f6;
+            --cool-grey: #64748b;
+            --light-grey: #94a3b8;
+            --soft-grey: #e2e8f0;
+            --dark-grey: #334155;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .split-screen {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Left side - Building Image */
+        .left-side {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .building-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.9);
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.3) 0%, rgba(37, 99, 235, 0.2) 100%);
+        }
+
+        .building-caption {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+            .building-caption h1 {
+                font-size: 3rem;
+                font-weight: 700;
+                color: white;
+                margin-bottom: 10px;
+            }
+
+            .building-caption p {
+                font-size: 1.1rem;
+                opacity: 0.9;
+            }
+
+        /* Right side - Login Form */
+        .right-side {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            padding: 40px;
+        }
+
+        .login-container {
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .login-header {
+            margin-bottom: 40px;
+        }
+
+            .login-header h2 {
+                color: var(--primary-blue);
+                font-size: 2rem;
+                font-weight: 700;
+                margin-bottom: 10px;
+            }
+
+            .login-header p {
+                color: var(--cool-grey);
+                font-size: 1rem;
+            }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: var(--dark-grey);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .input-group {
+            border: 1.5px solid var(--soft-grey);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+            .input-group:focus-within {
+                border-color: var(--secondary-blue);
+                box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+            }
+
+        .input-group-text {
+            background: transparent;
+            border: none;
+            color: var(--cool-grey);
+            padding: 0 15px;
+        }
+
+        .form-control {
+            border: none;
+            padding: 15px 15px 15px 0;
+            font-size: 1rem;
+        }
+
+            .form-control:focus {
+                outline: none;
+                box-shadow: none;
+            }
+
+        .btn-login {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            width: 100%;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+            .btn-login:hover {
+                background: var(--secondary-blue);
+                transform: translateY(-2px);
+                box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+            }
+
+            .btn-login:active {
+                transform: translateY(0);
+            }
+
+        .demo-badge {
+            text-align: center;
+            margin-top: 25px;
+            padding: 15px;
+            background: var(--soft-grey);
+            border-radius: 12px;
+            color: var(--dark-grey);
+            font-size: 0.9rem;
+        }
+
+            .demo-badge i {
+                color: var(--secondary-blue);
+                margin-right: 8px;
+            }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: var(--light-grey);
+            font-size: 0.85rem;
+        }
+
+        /* Toast customization */
+        .toast {
+            border-radius: 12px;
+            border: none;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .toast-header {
+            border-radius: 12px 12px 0 0;
+        }
+
+        .toast-body {
+            padding: 15px;
+        }
+
+        /* Responsive */
+        @@media (max-width: 768px) {
+            .split-screen {
+                flex-direction: column;
+            }
+
+            .left-side {
+                height: 40vh;
+            }
+
+            .building-caption h1 {
+                font-size: 2rem;
+            }
+
+            .right-side {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="split-screen">
+        <!-- Left side - Big Building Image -->
+        <div class="left-side">
+            <img src="~/images/Pietermariztburg.JPG"
+                 alt="Modern Student Residence"
+                 class="building-image">
+            <div class="image-overlay"></div>
+            <div class="building-caption">
+                <h1>ThePleasantOcc</h1>
+                <p>Premium student living in Pietermaritzburg</p>
+            </div>
+        </div>
+
+        <!-- Right side - Clean Login Form -->
+        <div class="right-side">
+            <div class="login-container">
+                <div class="login-header">
+                    <h2>Welcome Back</h2>
+                    <p>Enter your email to continue</p>
+                </div>
+
+                <form id="loginForm" onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="fas fa-envelope"></i>
+                            </span>
+                            <input type="email" class="form-control" id="email"
+                                   placeholder="your@email.com" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-login" id="submitBtn">
+                        <span>Continue to Site</span>
+                    </button>
+
+                    <div class="demo-badge">
+                        <i class="fas fa-info-circle"></i>
+                        Unblocked students/users cannot occupy any room.
+                    </div>
+                </form>
+
+                <div class="footer">
+                    <p class="mb-0">© 2026 ThePleasantOcc. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast notification -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="demoToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+            <div class="toast-header" style="background: linear-gradient(135deg, #f59e0b, #fbbf24); color: white;">
+                <i class="fas fa-info-circle me-2"></i>
+                <strong class="me-auto">Demo Access</strong>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-eye fa-2x me-3" style="color: var(--secondary-blue);"></i>
+                    <div>
+                        <strong>You are not coded for a residence</strong>
+                        <p class="mb-0 text-muted small">but you have been granted permission to view the site.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function handleLogin(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.innerHTML;
+
+            // Show loading state
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Processing...';
+            submitBtn.disabled = true;
+
+            fetch('/Home/ValidateLogin', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email: email })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    if (data.isStudent) {
+                        // Student - redirect immediately
+                        window.location.href = '/Home/Index';
+                    } else {
+                        // Demo - show toast then redirect
+                        const toast = new bootstrap.Toast(document.getElementById('demoToast'));
+                        toast.show();
+
+                        setTimeout(() => {
+                            window.location.href = '/Home/Index';
+                        }, 3000);
+                    }
+                } else {
+                    alert('Error: ' + data.message);
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }
+            })
+            .catch(error => {
+                alert('Error: ' + error);
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            });
+        }
+    </script>
+</body>
+</html>
