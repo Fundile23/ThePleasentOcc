@@ -43,7 +43,7 @@ ThePleasentOcc is a comprehensive student residence management system built with
 
 ## 🚀 Live Demo
 
-Visit the live site: [https://thepleasantocc20260311060222-a5avd2byctd8fyfq.canadacentral-01.azurewebsites.net/]
+Visit the live site: [https://thepleasantocc20260311064443-adfqbefbexhzc8e5.canadacentral-01.azurewebsites.net/]
 
 ## 📸 Screenshots
 
