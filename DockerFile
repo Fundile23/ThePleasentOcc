@@ -2,8 +2,8 @@
 WORKDIR /src
 
 COPY . .
-RUN dotnet restore "ThePleasentOcc.csproj"
-RUN dotnet publish "ThePleasentOcc.csproj" -c Release -o /app/publish
+RUN dotnet restore "ThePleasantOcc.csproj"
+RUN dotnet publish "ThePleasantOcc.csproj" -c Release -o /app/publish
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
@@ -14,4 +14,4 @@ ENV ASPNETCORE_URLS=http://+:10000
 
 EXPOSE 10000
 
-ENTRYPOINT ["dotnet", "ThePleasentOcc.dll"]
+ENTRYPOINT ["dotnet", "ThePleasantOcc.dll"]
