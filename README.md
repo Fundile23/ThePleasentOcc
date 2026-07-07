@@ -1,6 +1,6 @@
 # 🏢 ThePleasentOcc - Premium Student Residence Management System
 
-![License](https://img.shields.io/badge/license-MIT-blue)
+
 ![ASP.NET](https://img.shields.io/badge/ASP.NET-8.0-purple)
 ![SQL Server](https://img.shields.io/badge/SQL-Server-red)
 ![Azure](https://img.shields.io/badge/Azure-Deployed-success)
