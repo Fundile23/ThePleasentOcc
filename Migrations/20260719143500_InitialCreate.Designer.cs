@@ -12,7 +12,7 @@ using ThePleasantOcc.Data;
 namespace ThePleasantOcc.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260719133317_InitialCreate")]
+    [Migration("20260719143500_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

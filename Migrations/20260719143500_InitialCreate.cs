@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -8,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ThePleasantOcc.Migrations
 {
     /// <inheritdoc />
-    public partial class CleanStart : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,16 +18,16 @@ namespace ThePleasantOcc.Migrations
                 name: "Rooms",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    RoomNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Residence = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RoomType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TotalBeds = table.Column<int>(type: "int", nullable: false),
-                    OccupiedBeds = table.Column<int>(type: "int", nullable: false),
-                    Floor = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Size = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    RoomNumber = table.Column<string>(type: "text", nullable: false),
+                    Residence = table.Column<string>(type: "text", nullable: false),
+                    RoomType = table.Column<string>(type: "text", nullable: false),
+                    TotalBeds = table.Column<int>(type: "integer", nullable: false),
+                    OccupiedBeds = table.Column<int>(type: "integer", nullable: false),
+                    Floor = table.Column<int>(type: "integer", nullable: false),
+                    Price = table.Column<decimal>(type: "numeric(18,2)", nullable: false),
+                    Size = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -37,15 +38,15 @@ namespace ThePleasantOcc.Migrations
                 name: "Bookings",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    RoomId = table.Column<int>(type: "int", nullable: false),
-                    BedNumber = table.Column<int>(type: "int", nullable: false),
-                    StudentName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StudentEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StudentPhone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BookingDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    RoomId = table.Column<int>(type: "integer", nullable: false),
+                    BedNumber = table.Column<int>(type: "integer", nullable: false),
+                    StudentName = table.Column<string>(type: "text", nullable: false),
+                    StudentEmail = table.Column<string>(type: "text", nullable: false),
+                    StudentPhone = table.Column<string>(type: "text", nullable: false),
+                    BookingDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Status = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
