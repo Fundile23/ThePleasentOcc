@@ -140,7 +140,7 @@ namespace ThePleasantOcc.Controllers
                     StudentName = request.StudentName,
                     StudentEmail = request.StudentEmail,
                     StudentPhone = request.StudentPhone,
-                    BookingDate = DateTime.Now,
+                    BookingDate = DateTime.UtcNow,
                     Status = "Active"
                 };
 
@@ -163,7 +163,11 @@ namespace ThePleasantOcc.Controllers
             }
             catch (Exception ex)
             {
-                return Json(new { success = false, message = "Error: " + ex.Message });
+                return Json(new
+                {
+                    success = false,
+                    message = ex.ToString()
+                });
             }
         }
 
